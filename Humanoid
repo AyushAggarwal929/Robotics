@@ -1,0 +1,34 @@
+#include <Servo.h>
+
+Servo salute;  // create servo object to control a servo
+Servo right;
+Servo left;
+int pos = 0;    // variable to store the servo position
+
+void setup() {
+  salute.attach(9);
+  right.attach(10);
+  left.attach(11);
+  // attaches the servo on pin 9 to the servo object
+  Serial.begin(9600);
+}
+
+void loop() {
+  for (pos = 0; pos <= 140; pos += 2) {
+    right.write(pos);  
+    delay(5);     
+  }
+   for (pos = 140; pos >= 0; pos -= 2) {
+    left.write(pos);              
+    delay(5);     
+  }
+  for (pos = 140; pos >= 0; pos -= 2) {
+    right.write(pos); 
+    delay(5);      
+  }
+
+  for (pos = 0; pos <= 140; pos += 2) { 
+    left.write(pos);              
+    delay(5);                      
+  }
+}
