@@ -3,32 +3,32 @@
 Servo salute;  // create servo object to control a servo
 Servo right;
 Servo left;
-int pos = 0;    // variable to store the servo position
+int posright = 0;
+int posleft = 140;
 
 void setup() {
-  salute.attach(9);
-  right.attach(10);
-  left.attach(11);
+//  salute.attach(9);
+  right.attach(9);
+  left.attach(10);
   // attaches the servo on pin 9 to the servo object
   Serial.begin(9600);
 }
 
 void loop() {
-  for (pos = 0; pos <= 140; pos += 2) {
-    right.write(pos);  
+  for (posright; posright <= 100; posright += 2) {
+    right.write(posright);  
     delay(5);     
   }
-   for (pos = 140; pos >= 0; pos -= 2) {
-    left.write(pos);              
+   for (posleft; posleft >= 40; posleft -= 2) {
+    left.write(posleft);              
     delay(5);     
   }
-  for (pos = 140; pos >= 0; pos -= 2) {
-    right.write(pos); 
+  for (posright; posright >= 0; posright -= 2) {
+    right.write(posright); 
     delay(5);      
   }
-
-  for (pos = 0; pos <= 140; pos += 2) { 
-    left.write(pos);              
+  for (posleft; posleft <= 140; posleft += 2) { 
+    left.write(posleft);              
     delay(5);                      
   }
 }
