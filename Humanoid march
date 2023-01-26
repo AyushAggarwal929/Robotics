@@ -1,34 +1,64 @@
 #include <Servo.h>
-
-Servo salute;  // create servo object to control a servo
 Servo right;
 Servo left;
-int posright = 0;
-int posleft = 140;
-
+Servo sal;
+int pos = 40;
+int posright = 50;
+int posleft = 90;
+int t = 0;
+int rep = 1;
 void setup() {
-//  salute.attach(9);
-  right.attach(9);
-  left.attach(10);
-  // attaches the servo on pin 9 to the servo object
-  Serial.begin(9600);
+  // put your setup code here, to run once:
+  right.attach(10);
+  sal.attach(11);
+  left.attach(9);
 }
 
 void loop() {
-  for (posright; posright <= 100; posright += 2) {
-    right.write(posright);  
-    delay(5);     
+  if(t<30){
+    for (posright; posright <= 100; posright += 2) {
+      right.write(posright);  
+      delay(10);     
+    }
+     for (posleft; posleft >= 40; posleft -= 2) {
+      left.write(posleft);              
+      delay(10);     
+    }
+    for (posright; posright >= 0; posright -= 2) {
+      right.write(posright); 
+      delay(10);      
+    }
+    for (posleft; posleft <= 140; posleft += 2) { 
+      left.write(posleft);              
+      delay(10);                      
+    }
   }
-   for (posleft; posleft >= 40; posleft -= 2) {
-    left.write(posleft);              
-    delay(5);     
-  }
-  for (posright; posright >= 0; posright -= 2) {
-    right.write(posright); 
-    delay(5);      
-  }
-  for (posleft; posleft <= 140; posleft += 2) { 
-    left.write(posleft);              
-    delay(5);                      
-  }
+  else{
+    if(rep==1){
+    right.write(180);
+    delay(2000);
+    sal.write(45);
+    delay(10);
+    for (pos = 40; pos <= 140; pos += 1) {
+      left.write(pos);  
+      delay(5);
+    }
+    for (pos = 140; pos >= 40; pos -= 1) {
+      left.write(pos); 
+      delay(5);
+      }
+    }
+    else{
+            for (pos = 40; pos <= 140; pos += 1) {
+      left.write(pos);   
+      delay(5); 
+    }
+    for (pos = 140; pos >= 40; pos -= 1) {
+      left.write(pos);
+      delay(5);                       
+      }
+      }
+    rep++;
+    }
+  t++;
 }
